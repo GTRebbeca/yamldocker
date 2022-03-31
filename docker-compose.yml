@@ -23,22 +23,17 @@ services:
     volumes:
       - 'discourse_data:/bitnami/discourse'
     depends_on:
-      - postgresql
       - redis
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
       - DISCOURSE_HOST=localhost
       - DISCOURSE_DATABASE_HOST=localhost
       - DISCOURSE_DATABASE_PORT_NUMBER=3306
       - DISCOURSE_DATABASE_USER=root
-      - DISCOURSE_DATABASE_NAME=bitnami_discourse
+      - DISCOURSE_DATABASE_NAME=discourse
       - DISCOURSE_DATABASE_PASSWORD=admin
       - DISCOURSE_REDIS_HOST=redis
       - DISCOURSE_REDIS_PORT_NUMBER=6379
-      - POSTGRESQL_CLIENT_POSTGRES_USER=postgres
-      - POSTGRESQL_CLIENT_CREATE_DATABASE_NAME=discourse
-      - POSTGRESQL_CLIENT_CREATE_DATABASE_EXTENSIONS=hstore,pg_trgm
   sidekiq:
     image: docker.io/bitnami/discourse:2
     depends_on:
